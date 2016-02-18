@@ -299,6 +299,10 @@ __________________________________________________________
 
 BUILDING THE REACT ENVIRONMENT:
 
+Good examples using React Native:
+http://www.raywenderlich.com/99473/introducing-react-native-building-apps-javascript
+
+
 https://facebook.github.io/react-native/docs/videos.html#content
 
 https://github.com/creationix/nvm#installation
@@ -310,6 +314,26 @@ http://www.raywenderlich.com/99473/introducing-react-native-building-apps-javasc
 http://www.toptal.com/ios/cold-dive-into-react-native-a-beginners-tutorial
 
 https://www.rnplay.org/
+
+
+
+Sliders in RN example:
+https://www.rnplay.org/apps/5FsfPA
+
+react-native-calendar-reminders:
+https://www.npmjs.com/package/react-native-calendar-reminders
+
+google event objects details:
+https://developers.google.com/google-apps/calendar/v3/reference/events
+
+More RN examples:
+http://moduscreate.com/react_native_custom_components_ios/
+
+iOS Calendar Module Example:
+https://facebook.github.io/react-native/docs/native-modules-ios.html
+
+Learn RN tutorial:
+http://www.toptal.com/react/navigating-the-react-ecosystem
 
 
 
