@@ -1,0 +1,81 @@
+React native vs swift
+
+React native: Steven recommmends this
+could be easier, more familiar, same dev environment, written in js.
+1 new things
+still need marginal x-code
+(speckles was done using react)
+still basically need to choose index.ios.js or index.android.js to focus on
+--> still uses
+
+Do the React native tutorial today and then see Steven later Thursday or friday for 30 minute session on
+
+
+
+Swift:
+everything is different
+3 new things
+foreign dev environment
+ios SDK???
+need a closure function?
+fetch().then() --> becomes a large block of code
+iphone story boards are a huge pain in the neck
+--> 1 single file that shows where you want things on the page
+
+Using swift means a much smaller feature set to show off at the end, less functional MVP
+PROS: we can say we learned swift in a week.
+
+
+
+
+Other notes:
+Use GPS kit
+Google turn/directions app
+App always open ???:
+--> when you start location services, you give it permissions on the first run
+then the app will run in background
+Node server running and communicating with the phone.
+
+Query google calendar API, use phones gps to determine if youve moved yet
+--> tell me when theres a significant change in position
+
+
+First Steps:
+List the feature set
+read React native tutorial --> write a small program in it
+(facebook's, see youtube, docs arent great but ok)
+"Spike"
+
+
+Features:
+1) will tell you when you need to leave, popup on phone
+so if 30 min commute, need to be at DBC at 845, tells me i should leave in 5 minutes at 8:10
+
+Necessary info:
+1) user login info, gmail email, username, password --> omni auth API with google
+2) current traffic report from google maps
+3) location of destination
+4) set default mode of transportation upon installation (subway, walking, car, bus)
+5) travel time between current location and destinations of next upcoming event on the calendar.
+6)
+
+
+Every 5 minutes, does calculation of how long it will take to get there,
+--> when the time of travel is within 15 minutes of the appt_time - current_time, it will alert you
+
+If you have a bunch of different events: you should be able to set whether to alert you about commute time or not
+User-story : I want to be able to turn on or off alerts for any event in my calendar
+- If I want an alert, the app will check to make sure it has all relevant info, destination address, time of day & timezone, and that location/gps tracking is on
+
+When do alerts happen?:
+ - settable alert times within app. default is 5 minutes
+ - if actual time arrives, you get another alert.
+ - once youve moved any significant distance, app assumes you have started travelling and ceases alerts
+ - user can ask for status of current commute at any point in time, and you get a green, yellow, or red light based on where you are and how much time you have left.
+ - at any point in time, get directions to your destination, with current location and destination automatically set based on you calendar and gps
+
+Names:
+
+AmIlate?
+getMoving
+5moreminutes
