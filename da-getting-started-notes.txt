@@ -11,7 +11,6 @@ still basically need to choose index.ios.js or index.android.js to focus on
 Do the React native tutorial today and then see Steven later Thursday or friday for 30 minute session on
 
 
-
 Swift:
 everything is different
 3 new things
@@ -25,8 +24,7 @@ iphone story boards are a huge pain in the neck
 Using swift means a much smaller feature set to show off at the end, less functional MVP
 PROS: we can say we learned swift in a week.
 
-
-
+_____________________________________________________________________
 
 Other notes:
 Use GPS kit
@@ -39,13 +37,11 @@ Node server running and communicating with the phone.
 Query google calendar API, use phones gps to determine if youve moved yet
 --> tell me when theres a significant change in position
 
-
 First Steps:
 List the feature set
 read React native tutorial --> write a small program in it
 (facebook's, see youtube, docs arent great but ok)
 "Spike"
-
 
 Features:
 1) will tell you when you need to leave, popup on phone
@@ -57,8 +53,6 @@ Necessary info:
 3) location of destination
 4) set default mode of transportation upon installation (subway, walking, car, bus)
 5) travel time between current location and destinations of next upcoming event on the calendar.
-6)
-
 
 Every 5 minutes, does calculation of how long it will take to get there,
 --> when the time of travel is within 15 minutes of the appt_time - current_time, it will alert you
@@ -75,7 +69,229 @@ When do alerts happen?:
  - at any point in time, get directions to your destination, with current location and destination automatically set based on you calendar and gps
 
 Names:
-
 AmIlate?
-getMoving
+getMoving!
 5moreminutes
+
+__________________________________________________________________
+
+Introducing React Native:
+https://code.facebook.com/posts/1014532261909640/react-native-bringing-modern-web-techniques-to-mobile/
+
+Since React components are just pure, side-effect-free functions that return what our views look like at any point in time, we never need to read from our underlying rendered view implementation in order to write to it. In the browser environment, React is non-blocking with respect to the DOM, but the beauty of React is that it is abstract and not tightly coupled to the DOM. React can wrap any imperative view system, like UIKit on iOS, for example.
+
+...
+
+We've been using React Native in production at Facebook for some time now, and while there's still a ton of work to do, it's been working really well for us. It's worth noting that we're not chasing “write once, run anywhere.” Different platforms have different looks, feels, and capabilities, and as such, we should still be developing discrete apps for each platform, but the same set of engineers should be able to build applications for whatever platform they choose, without needing to learn a fundamentally different set of technologies for each. We call this approach “learn once, write anywhere.”
+
+React Native tutorial Notes:
+
+
+STeven's Notes:
+ES 6 basics:
+
+document.addEventListener('clicl', (event) => {
+  this
+
+});
+
+//fat arrow syntax binds 'this' to what youd expect it to be
+
+setTimeout(() => {
+  console.log('hello')
+}, 200);
+
+new Promise((resolve, reject)=> {
+  setTimeout(()=>resolve(5), 2000 );
+})
+.then((arg) => {return 10 * arg;} );
+// exact same as [then((arg) => 10* arg);]
+.then((arg) => console.log('second then was passed' + arg));
+
+
+
+class Person {
+
+  constructor(name, dob, skills) {
+  this.name = name;
+  this.dob = dob;
+  this.skills = skills || [];
+  }
+
+  concatSkills() {
+    var result = '';
+    this.skills.forEach((skill) => {
+
+    })
+  }
+}
+
+
+
+go to command line :
+
+$ npm install -g jsxhint
+
+$ jsx hint
+
+$ which jsx hint
+--> should show you a location on your comp
+
+in Sublime
+cmd + shift + p
+
+got to jsx in the dropdown menu and install jsx
+
+change .js to jsx in file extension
+
+read link about geo-location in react native (use phones native gps)
+
+fetch API
+- go and get this URL, returns a promise
+- .then return response.json (just unwraps the json that came back from the server)
+- set state of react component to have a this.movies value
+responseData = jsonData
+
+fetchData () {
+}
+
+function is just Javascript
+same as
+
+$.get(REQUEST_URL)
+.then(function(response){return response; })
+.then(function(json) {
+  this.setState({
+  movies: json.movies
+  });
+});
+
+
+in our component we will most likely be calling a method within the google API code
+
+
+API's we will need:
+google maps api javascript sdk --> 'directions service'
+--> download SDK, then you can call directionsService  dot something
+
+use google maps javascript library
+
+ios calendar api
+
+'hit home button and go into calendar to access it?'
+
+1) geo-location--> use phone's built-in
+2) google maps, use above google maps api
+3) ios calendar API
+4) google O-auth
+
+eventkit framework(appcoda) lets you access the iphone calendar
+
+react native google api examples:
+
+write a js class that list out the different steps (stub-out)
+
+
+my_fake_calendar.js
+
+var myEvents = [
+  {description: 'go to work',
+   start_time: newDate('02-18-2016T16:00:00-500')}       //iso 8601 format
+
+in another file, import calendar
+import Calendar from './my_fake_calendar.js'
+
+
+our app will show them a list of their calendar events and have
+
+
+build out event list component ,
+  which calls (for current user) to retrieve all active events
+    make them clickable, when i click them, sends a message back to the API telling it to remind me about it
+
+app wont be in foreground:
+  how does background execution work
+
+TODO's:
+ - make event list component in react that can connect to the google api, display a list of events
+ - separately look into how to update events via the API (set a reminder within google calendar THROUGH the app interface)
+ -
+
+SPLITTING THINGS UP:
+
+
+BIG CONCERNS:
+- Must be a way for the app to create notifications without being awake/active on phone
+-
+
+file to work on in your REACT-NATIVE directory : index.ios.js
+for each component we will be making another file
+--> src/myfile.js
+
+  class MyClass {
+
+    constructor(name){
+      this.name = name;
+    }
+
+    getMyUpcomingEvents(){
+      new Promise((resolve, reject) =>{
+        resolve([1,2,3]);
+      });
+      console.log('yippee');
+    }
+  }
+
+export {MyClass}
+
+--> index.ios.js
+
+import {MyClass} from './src/myfile.js'
+
+within myAwesomeProject...
+
+class AwesomeProject extends Component {
+  constructor() {
+    super()
+    new MyClass().getMyUpcomingEvents().then((arrayOfEvents) => {
+      this.setState({
+        eventList: arrayOfEvents;
+      });
+    });
+  }
+
+  render() {
+    return (
+      <View events={this.state.arrayOfEvents} style={styles.container}
+        <Text style={styles.welcome}>
+          Welcome to React Native! You are very Brave.
+        </text>
+        <Text style= {styles.instructions}>
+          to get started, edit index.ios.js
+        </Text>
+        <Text style= {styles.instructions }>
+          hit command + R to reload
+        </Text>
+      </View>
+    )
+  };
+};
+
+
+SEE STEVEN'S GIST es6-example.js
+
+go to babel REPL (babeljs.io) and you can paste in your ES6 in and see regular js as output
+
+inside the awesomeProject directory
+npm install to install node package manager
+
+
+COMPONENTS:
+1) EventList component (calendar API to get list of events)
+2) JS program that goes and gets events from the calendar API (google maps API at javascript level)
+3) Go to directions API and give it 2 addresses and get it to return a set of directions/ETA
+
+4) set up REACT environment
+
+5) lastly, wire them all together
+
